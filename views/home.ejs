@@ -1,0 +1,895 @@
+<% layout('layouts/boilerplate')%>
+    <!-- hero section -->
+    <section id="hero">
+        <div class="container-xl">
+            <div class="row gy-4">
+                <div class="col-lg-8">
+                    <!-- featured post large -->
+                    <% for (let accommodation of featuredPosts ){%>
+                        <div class="post featured-post-lg">
+                            <div class="details clearfix">
+                                <a href="/posts/<%=accommodation.slug%>" class="category-badge">
+                                    <%=accommodation.category%>
+                                </a>
+                                <h2 class="post-title">
+                                    <a href="/posts/<%=accommodation.slug%>">
+                                        <%=accommodation.title%>
+                                    </a>
+                                </h2>
+                                <ul class="meta list-inline mb-0">
+                                    <li class="list-inline-item"><a href="#">Admin </a></li>
+                                    <li class="list-inline-item">
+                                        <%= moment(accommodation.creationDate).format('Do MMMM, YYYY');
+                %>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="/posts/<%=accommodation.slug%>">
+                                <div class="thumb rounded">
+                                    <div class="inner data-bg-image" data-bg-image="<%=accommodation.images[0].url%>"></div>
+                                </div>
+                            </a>
+                            <% }%>
+                        </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <!-- post tabs -->
+                    <div class="post-tabs rounded bordered">
+                        <!-- tab navs -->
+                        <ul class="nav nav-tabs nav-pills nav-fill" id="postsTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button aria-controls="popular" aria-selected="true" class="nav-link active" data-bs-target="#popular" data-bs-toggle="tab" id="popular-tab" role="tab" type="button">
+                Student Hack
+              </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button aria-controls="recent" aria-selected="false" class="nav-link" data-bs-target="#recent" data-bs-toggle="tab" id="recent-tab" role="tab" type="button">
+                Funding/Jobs
+              </button>
+                            </li>
+                        </ul>
+                        <!-- tab contents -->
+                        <div class="tab-content" id="postsTabContent">
+                            <!-- loader -->
+                            <div class="lds-dual-ring"></div>
+                            <!-- popular posts -->
+                            <div aria-labelledby="popular-tab" class="tab-pane fade show active" id="popular" role="tabpanel">
+                                <% for (let post of posts){%>
+                                    <!-- post -->
+                                    <div class="post post-list-sm circle">
+                                        <div class="thumb rounded">
+                                            <a href="/posts/<%=post.slug%>">
+                                                <div class="inner">
+                                                    <%if(post.images.length) {%>
+                                                        <img alt="" src="<%=post.images[0].url%>" crossorigin />
+                                                        <% }else {%>
+                                                            <img alt="" src="https://res.cloudinary.com/douqbebwk/image/upload/v1600103881/YelpCamp/lz8jjv2gyynjil7lswf4.png" crossorigin />
+                                                            <% } %>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="details clearfix">
+                                            <h6 class="post-title my-0">
+                                                <a href="/posts/<%=post.slug%>">
+                                                    <%=post.title%>
+                                                </a>
+                                            </h6>
+                                            <ul class="meta list-inline mt-1 mb-0">
+                                                <li class="list-inline-item">
+                                                    <%= moment(post.creationDate).format('Do MMMM, YYYY'); %>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <% }%>
+                            </div>
+                            <!-- recent posts -->
+                            <div aria-labelledby="recent-tab" class="tab-pane fade" id="recent" role="tabpanel">
+                                <% for (let post of posts){%>
+                                    <!-- post -->
+                                    <div class="post post-list-sm circle">
+                                        <div class="thumb rounded">
+                                            <a href="/posts/<%=post.slug%>">
+                                                <div class="inner">
+                                                    <%if(post.images.length) {%>
+                                                        <img alt="" src="<%=post.images[0].url%>" crossorigin />
+                                                        <% }else {%>
+                                                            <img alt="" src="https://res.cloudinary.com/douqbebwk/image/upload/v1600103881/YelpCamp/lz8jjv2gyynjil7lswf4.png" crossorigin />
+                                                            <% } %>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="details clearfix">
+                                            <h6 class="post-title my-0">
+                                                <a href="/posts/<%=post.slug%>">
+                                                    <%=post.title%>
+                                                </a>
+                                            </h6>
+                                            <ul class="meta list-inline mt-1 mb-0">
+                                                <li class="list-inline-item">
+                                                    <%= moment(post.creationDate).format('Do MMMM, YYYY'); %>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <% }%>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- section main content -->
+    <section class="main-content">
+        <div class="container-xl">
+            <div class="row gy-4">
+                <div class="col-lg-8">
+                    <!-- section header -->
+                    <div class="section-header">
+                        <h3 class="section-title">Best Of the Week</h3>
+                        <img src="/images/wave.svg" class="wave" alt="wave" />
+                    </div>
+
+                    <div class="padding-30 rounded bordered">
+                        <div class="row gy-5">
+                            <div class="col-sm-6">
+                                <% for (let post of posts){%>
+                                    <!-- post -->
+                                    <div class="post post-list-sm square">
+                                        <div class="thumb rounded">
+                                            <a href="/posts/<%=post.slug%>">
+                                                <div class="inner">
+                                                    <%if(post.images.length) {%>
+                                                        <img alt="" src="<%=post.images[0].url%>" crossorigin />
+                                                        <% }else {%>
+                                                            <img alt="" src="https://res.cloudinary.com/douqbebwk/image/upload/v1600103881/YelpCamp/lz8jjv2gyynjil7lswf4.png" crossorigin />
+                                                            <% } %>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="details clearfix">
+                                            <h6 class="post-title my-0">
+                                                <a href="/posts/<%=post.slug%>">
+                                                    <%=post.title%>
+                                                </a>
+                                            </h6>
+                                            <ul class="meta list-inline mt-1 mb-0">
+                                                <li class="list-inline-item">
+                                                    <%= moment(post.creationDate).format('Do MMMM, YYYY'); %>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <% }%>
+                            </div>
+                            <div class="col-sm-6">
+                                <% for (let post of posts){%>
+                                    <!-- post -->
+                                    <div class="post post-list-sm square">
+                                        <div class="thumb rounded">
+                                            <a href="/posts/<%=post.slug%>">
+                                                <div class="inner">
+                                                    <%if(post.images.length) {%>
+                                                        <img alt="" src="<%=post.images[0].url%>" crossorigin />
+                                                        <% }else {%>
+                                                            <img alt="" src="https://res.cloudinary.com/douqbebwk/image/upload/v1600103881/YelpCamp/lz8jjv2gyynjil7lswf4.png" crossorigin />
+                                                            <% } %>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="details clearfix">
+                                            <h6 class="post-title my-0">
+                                                <a href="/posts/<%=post.slug%>">
+                                                    <%=post.title%>
+                                                </a>
+                                            </h6>
+                                            <ul class="meta list-inline mt-1 mb-0">
+                                                <li class="list-inline-item">
+                                                    <%= moment(post.creationDate).format('Do MMMM, YYYY'); %>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <% }%>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="spacer" data-height="50"></div>
+
+                    <!-- horizontal ads -->
+                    <div class="ads-horizontal text-md-center">
+                        <span class="ads-title">- Sponsored Ad -</span>
+                        <a href="#">
+                            <img src="///images/ads/ad-750.png" alt="Advertisement" />
+                        </a>
+                    </div>
+
+
+
+                    <div class="spacer" data-height="50"></div>
+
+                    <!-- section header -->
+                    <div class="section-header">
+                        <h3 class="section-title">Shop Essentials</h3>
+                        <img src="images/wave.svg" class="wave" alt="wave" />
+                    </div>
+
+                    <div class="padding-30 rounded bordered">
+                        <div class="row">
+                            <% for (let job of products){%>
+
+                                <div class="col-md-12 col-sm-6">
+                                    <!-- post -->
+                                    <div class="post post-list clearfix">
+                                        <div class="thumb rounded">
+                                            <span class="post-format-sm">
+                    <i class="icon-picture"></i>
+                  </span>
+                                            <a href="/products/<%=job.slug%>">
+                                                <div class="inner">
+                                                    <%if(job.images.length) {%>
+                                                        <img alt="" src="<%=job.images[0].url%>" crossorigin />
+                                                        <% }else {%>
+                                                            <img alt="" src="https://res.cloudinary.com/douqbebwk/image/upload/v1600103881/YelpCamp/lz8jjv2gyynjil7lswf4.png" crossorigin />
+                                                            <% } %>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="details">
+                                            <ul class="meta list-inline mb-3">
+                                                <li class="list-inline-item">
+                                                    <a href="#"><img src="" class="author" alt="author" />Admin</a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a href="#">
+                                                        <%=job.category%>
+                                                    </a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <%= moment(job.creationDate).format('Do MMMM, YYYY'); %>
+                                                </li>
+                                            </ul>
+                                            <h5 class="post-title">
+                                                <a href="/products/<%=job.slug%>">
+                                                    <%= job.title %>
+                                                </a>
+                                            </h5>
+                                            <p class="excerpt mb-0">R
+                                                <%= job.price %>
+                                            </p>
+                                            <p class="excerpt mb-0">
+                                                <%= job.snippet %>
+                                            </p>
+                                            <div class="post-bottom clearfix d-flex align-items-center">
+                                                <div class="social-share me-auto">
+                                                    <button class="toggle-button icon-share"></button>
+                                                    <ul class="icons list-unstyled list-inline mb-0">
+                                                        <li class="list-inline-item">
+                                                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <a href="#"><i class="fab fa-twitter"></i></a>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <a href="#"><i class="fab fa-pinterest"></i></a>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <a href="#"><i class="fab fa-telegram-plane"></i></a>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <a href="#"><i class="far fa-envelope"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="more-button float-end">
+                                                    <a href="/products/<%=job.slug%>"><span class="icon-options"></span
+                      ></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% }%>
+                        </div>
+                        <!-- load more button -->
+                        <div class="text-center">
+                            <button class="btn btn-simple">Load More</button>
+                        </div>
+                    </div>
+
+                    <div class="spacer" data-height="50"></div>
+
+
+
+                    <!-- section header -->
+                    <div class="section-header">
+                        <h3 class="section-title">SA Courses</h3>
+                        <img src="/images/wave.svg" class="wave" alt="wave" />
+                        <div class="slick-arrows-top">
+                            <button type="button" data-role="none" class="carousel-topNav-prev slick-custom-buttons" aria-label="Previous">
+              <i class="icon-arrow-left"></i>
+            </button>
+                            <button type="button" data-role="none" class="carousel-topNav-next slick-custom-buttons" aria-label="Next">
+              <i class="icon-arrow-right"></i>
+            </button>
+                        </div>
+                    </div>
+
+                    <div class="row post-carousel-twoCol post-carousel">
+                        <!-- post -->
+                        <% for (let accommodation of courses){%>
+
+                            <div class="post post-over-content col-md-6">
+                                <div class="details clearfix">
+                                    <a href="#" class="category-badge">
+                                        <%= accommodation.institution%>
+                                    </a>
+                                    <h4 class="post-title">
+                                        <a href="/courses/<%=accommodation.slug%>">
+                                            <%= accommodation.title %>
+                                        </a>
+                                    </h4>
+                                    <ul class="meta list-inline mb-0">
+                                        <li class="list-inline-item"><a href="#">Admin</a></li>
+                                        <li class="list-inline-item">
+                                            <%= moment(accommodation.creationDate).format('Do MMMM,YYYY'); %>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <a href="/courses/<%=accommodation.slug%>">
+                                    <div class="thumb rounded">
+                                        <div class="inner">
+                                            <%if(accommodation.images.length) {%>
+                                                <img alt="" src="<%=accommodation.images[0].url%>" crossorigin />
+                                                <% }else {%>
+                                                    <img alt="" src="https://res.cloudinary.com/douqbebwk/image/upload/v1600103881/YelpCamp/lz8jjv2gyynjil7lswf4.png" crossorigin />
+                                                    <% } %>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <% }%>
+                    </div>
+
+                    <div class="spacer" data-height="50"></div>
+
+                    <!-- section header -->
+                    <div class="section-header">
+                        <h3 class="section-title">Personal Developement</h3>
+                        <img src="/images/wave.svg" class="wave" alt="wave" />
+                    </div>
+
+                    <div class="padding-30 rounded bordered">
+                        <div class="row gy-5">
+                            <div class="col-sm-6">
+                                <% for (let post of posts){%>
+                                    <!-- post -->
+                                    <div class="post post-list-sm square">
+                                        <div class="thumb rounded">
+                                            <a href="/posts/<%=post.slug%>">
+                                                <div class="inner">
+                                                    <%if(post.images.length) {%>
+                                                        <img alt="" src="<%=post.images[0].url%>" crossorigin />
+                                                        <% }else {%>
+                                                            <img alt="" src="https://res.cloudinary.com/douqbebwk/image/upload/v1600103881/YelpCamp/lz8jjv2gyynjil7lswf4.png" crossorigin />
+                                                            <% } %>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="details clearfix">
+                                            <h6 class="post-title my-0">
+                                                <a href="/posts/<%=post.slug%>">
+                                                    <%=post.title%>
+                                                </a>
+                                            </h6>
+                                            <ul class="meta list-inline mt-1 mb-0">
+                                                <li class="list-inline-item">
+                                                    <%= moment(post.creationDate).format('Do MMMM, YYYY'); %>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <% }%>
+                            </div>
+                            <div class="col-sm-6">
+                                <% for (let post of posts){%>
+                                    <!-- post -->
+                                    <div class="post post-list-sm square">
+                                        <div class="thumb rounded">
+                                            <a href="/posts/<%=post.slug%>">
+                                                <div class="inner">
+                                                    <%if(post.images.length) {%>
+                                                        <img alt="" src="<%=post.images[0].url%>" crossorigin />
+                                                        <% }else {%>
+                                                            <img alt="" src="https://res.cloudinary.com/douqbebwk/image/upload/v1600103881/YelpCamp/lz8jjv2gyynjil7lswf4.png" crossorigin />
+                                                            <% } %>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="details clearfix">
+                                            <h6 class="post-title my-0">
+                                                <a href="/posts/<%=post.slug%>">
+                                                    <%=post.title%>
+                                                </a>
+                                            </h6>
+                                            <ul class="meta list-inline mt-1 mb-0">
+                                                <li class="list-inline-item">
+                                                    <%= moment(post.creationDate).format('Do MMMM, YYYY'); %>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <% }%>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="spacer" data-height="50"></div>
+
+                    <!-- section header -->
+                    <div class="section-header">
+                        <h3 class="section-title">Student Accomodations</h3>
+                        <img src="/images/wave.svg" class="wave" alt="wave" />
+                        <div class="slick-arrows-top">
+                            <button type="button" data-role="none" class="carousel-topNav-prev slick-custom-buttons" aria-label="Previous">
+              <i class="icon-arrow-left"></i>
+            </button>
+                            <button type="button" data-role="none" class="carousel-topNav-next slick-custom-buttons" aria-label="Next">
+              <i class="icon-arrow-right"></i>
+            </button>
+                        </div>
+                    </div>
+
+                    <div class="row post-carousel-twoCol post-carousel">
+                        <!-- post -->
+                        <% for (let accommodation of accommodations){%>
+
+                            <div class="post post-over-content col-md-6">
+                                <div class="details clearfix">
+                                    <a href="#" class="category-badge">
+                                        <%= accommodation.institution %>
+                                    </a>
+                                    <h4 class="post-title">
+                                        <a href="/accommodations/<%=accommodation.slug%>">
+                                            <%= accommodation.title %>
+                                        </a>
+                                    </h4>
+                                    <ul class="meta list-inline mb-0">
+                                        <li class="list-inline-item"><a href="#">Admin</a></li>
+                                        <li class="list-inline-item">
+                                            <%= moment(accommodation.creationDate).format('Do MMMM,YYYY'); %>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <a href="/accommodations/<%=accommodation.slug%>">
+                                    <div class="thumb rounded">
+                                        <div class="inner">
+                                            <%if(accommodation.images.length) {%>
+                                                <img alt="" src="<%=accommodation.images[0].url%>" crossorigin />
+                                                <% }else {%>
+                                                    <img alt="" src="https://res.cloudinary.com/douqbebwk/image/upload/v1600103881/YelpCamp/lz8jjv2gyynjil7lswf4.png" crossorigin />
+                                                    <% } %>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <% }%>
+                    </div>
+
+                    <div class="spacer" data-height="50"></div>
+
+                    <!-- section header -->
+                    <div class="section-header">
+                        <h3 class="section-title">Latest Jobs</h3>
+                        <img src="images/wave.svg" class="wave" alt="wave" />
+                    </div>
+
+                    <div class="padding-30 rounded bordered">
+                        <div class="row">
+                            <% for (let job of jobs){%>
+
+                                <div class="col-md-12 col-sm-6">
+                                    <!-- post -->
+                                    <div class="post post-list clearfix">
+                                        <div class="thumb rounded">
+                                            <span class="post-format-sm">
+                    <i class="icon-picture"></i>
+                  </span>
+                                            <a href="/jobs/<%=job.slug%>">
+                                                <div class="inner">
+                                                    <%if(job.images.length) {%>
+                                                        <img alt="" src="<%=job.images[0].url%>" crossorigin />
+                                                        <% }else {%>
+                                                            <img alt="" src="https://res.cloudinary.com/douqbebwk/image/upload/v1600103881/YelpCamp/lz8jjv2gyynjil7lswf4.png" crossorigin />
+                                                            <% } %>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="details">
+                                            <ul class="meta list-inline mb-3">
+                                                <li class="list-inline-item">
+                                                    <a href="#"><img src="images/other/author-sm.png" class="author" alt="author" />Admin</a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a href="#">
+                                                        <%=job.employmenType%>
+                                                    </a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <%= moment(job.creationDate).format('Do MMMM, YYYY'); %>
+                                                </li>
+                                            </ul>
+                                            <h5 class="post-title">
+                                                <a href="/jobs/<%=job.slug%>">
+                                                    <%= job.title %>
+                                                </a>
+                                            </h5>
+                                            <p class="excerpt mb-0">
+                                                <%= job.location %>
+                                            </p>
+                                            <p class="excerpt mb-0">R
+                                                <%= job.price %> P/M</p>
+                                            <p class="excerpt mb-0">
+                                                <%= job.snippet %>
+                                            </p>
+                                            <div class="post-bottom clearfix d-flex align-items-center">
+                                                <div class="social-share me-auto">
+                                                    <button class="toggle-button icon-share"></button>
+                                                    <ul class="icons list-unstyled list-inline mb-0">
+                                                        <li class="list-inline-item">
+                                                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <a href="#"><i class="fab fa-twitter"></i></a>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <a href="#"><i class="fab fa-pinterest"></i></a>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <a href="#"><i class="fab fa-telegram-plane"></i></a>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <a href="#"><i class="far fa-envelope"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="more-button float-end">
+                                                    <a href="/jobs/<%=job.slug%>"><span class="icon-options"></span
+                      ></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% }%>
+                        </div>
+                        <!-- load more button -->
+                        <div class="text-center">
+                            <button class="btn btn-simple">Load More</button>
+                        </div>
+                    </div>
+
+                    <!-- section header -->
+                    <div class="section-header">
+                        <h3 class="section-title">SA Institutions</h3>
+                        <img src="/images/wave.svg" class="wave" alt="wave" />
+                        <div class="slick-arrows-top">
+                            <button type="button" data-role="none" class="carousel-topNav-prev slick-custom-buttons" aria-label="Previous">
+              <i class="icon-arrow-left"></i>
+            </button>
+                            <button type="button" data-role="none" class="carousel-topNav-next slick-custom-buttons" aria-label="Next">
+              <i class="icon-arrow-right"></i>
+            </button>
+                        </div>
+                    </div>
+
+                    <div class="row post-carousel-twoCol post-carousel">
+                        <!-- post -->
+                        <% for (let accommodation of institutions){%>
+
+                            <div class="post post-over-content col-md-6">
+                                <div class="details clearfix">
+                                    <a href="#" class="category-badge">
+                                        <%= accommodation.institutionType %>
+                                    </a>
+                                    <h4 class="post-title">
+                                        <a href="/institutions/<%=accommodation.slug%>">
+                                            <%= accommodation.title %>
+                                        </a>
+                                    </h4>
+                                    <ul class="meta list-inline mb-0">
+                                        <li class="list-inline-item"><a href="#">Admin</a></li>
+                                        <li class="list-inline-item">
+                                            <%= moment(accommodation.creationDate).format('Do MMMM,YYYY'); %>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <a href="/institutions/<%=accommodation.slug%>">
+                                    <div class="thumb rounded">
+                                        <div class="inner">
+                                            <%if(accommodation.images.length) {%>
+                                                <img alt="" src="<%=accommodation.images[0].url%>" crossorigin />
+                                                <% }else {%>
+                                                    <img alt="" src="https://res.cloudinary.com/douqbebwk/image/upload/v1600103881/YelpCamp/lz8jjv2gyynjil7lswf4.png" crossorigin />
+                                                    <% } %>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <% }%>
+                    </div>
+
+                    <div class="spacer" data-height="50"></div>
+                </div>
+
+                <div class="col-lg-4">
+                    <!-- sidebar -->
+                    <div class="sidebar">
+                        <!-- widget about -->
+                        <div class="widget rounded">
+                            <div class="widget-about data-bg-image text-center" data-bg-image="images/map-bg.png">
+                                <h4>SF.</h4>
+                                <p class="mb-4">
+                                    Student live support group insuring fulfilling live is the end goal
+                                </p>
+                                <ul class="social-icons list-unstyled list-inline mb-0">
+                                    <li class="list-inline-item">
+                                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#"><i class="fab fa-twitter"></i></a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#"><i class="fab fa-instagram"></i></a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#"><i class="fab fa-medium"></i></a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#"><i class="fab fa-youtube"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- widget popular posts -->
+                        <div class="widget rounded">
+                            <div class="widget-header text-center">
+                                <h3 class="widget-title">Popular Posts</h3>
+                                <img src="images/wave.svg" class="wave" alt="wave" />
+                            </div>
+                            <div class="widget-content">
+                                <% for (let post of popularPosts){%>
+                                    <!-- post -->
+                                    <div class="post post-list-sm circle">
+                                        <div class="thumb circle">
+                                            <span class="number">1</span>
+                                            <a href="/posts/<%=post.slug%>">
+                                                <div class="inner">
+                                                    <%if(post.images.length) {%>
+                                                        <img alt="" src="<%=post.images[0].url%>" crossorigin />
+                                                        <% }else {%>
+                                                            <img alt="" src="https://res.cloudinary.com/douqbebwk/image/upload/v1600103881/YelpCamp/lz8jjv2gyynjil7lswf4.png" crossorigin />
+                                                            <% } %>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="details clearfix">
+                                            <h6 class="post-title my-0">
+                                                <a href="/posts/<%=post.slug%>">
+                                                    <%= post.title %>
+                                                </a>
+                                            </h6>
+                                            <ul class="meta list-inline mt-1 mb-0">
+                                                <li class="list-inline-item">
+                                                    <%= moment(post.creationDate).format('Do MMMM, YYYY'); %>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <% }%>
+                            </div>
+                        </div>
+
+                        <!-- widget categories -->
+                        <div class="widget rounded">
+                            <div class="widget-header text-center">
+                                <h3 class="widget-title">Explore Topics</h3>
+                                <img src="images/wave.svg" class="wave" alt="wave" />
+                            </div>
+                            <div class="widget-content">
+                                <ul class="list">
+                                    <li>
+                                        <a href="/accomodations">Accomodations</a><span>(78+)</span>
+                                    </li>
+                                    <li><a href="/jobs">Jobs</a><span>(200+)</span></li>
+                                    <li><a href="/posts">StudentHacks</a><span>(45+)</span></li>
+                                    <li>
+                                        <a href="/instititions">SAInstitutions</a><span>(55+)</span>
+                                    </li>
+                                    <li><a href="/courses">SACourses</a><span>(79+)</span></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- widget newsletter -->
+                        <div class="widget rounded">
+                            <div class="widget-header text-center">
+                                <h3 class="widget-title">Newsletter</h3>
+                                <img src="images/wave.svg" class="wave" alt="wave" />
+                            </div>
+                            <div class="widget-content">
+                                <span class="newsletter-headline text-center mb-3">Join 1000 subscribers!</span
+              >
+              <form action="/newsletter" method="POST">
+                <div class="mb-2">
+                  <input
+                    class="form-control w-100 text-center"
+                    placeholder="Email address…"
+                    type="email"
+                  />
+                </div>
+                <button class="btn btn-default btn-full" type="submit">
+                  Sign Up
+                </button>
+              </form>
+              <span class="newsletter-privacy text-center mt-3"
+                >By signing up, you agree to our
+                <a href="#">Privacy Policy</a></span
+              >
+            </div>
+          </div>
+
+          <!-- widget post carousel -->
+          <div class="widget rounded">
+            <div class="widget-header text-center">
+              <h3 class="widget-title">Celebration</h3>
+              <img src="images/wave.svg" class="wave" alt="wave" />
+            </div>
+            <div class="widget-content">
+              <div class="post-carousel-widget">
+                <% for (let post of posts){%>
+                <!-- post -->
+                <div class="post post-carousel">
+                  <div class="thumb rounded">
+                    <a href="#" class="category-badge position-absolute"
+                      ><%=post.category%></a
+                    >
+                    <a href="/posts/<%=post.slug%>">
+                      <div class="inner">
+                        <%if(post.images.length) {%>
+                        <img alt="" src="<%=post.images[0].url%>" crossorigin />
+                        <% }else {%>
+                        <img
+                          alt=""
+                          src="https://res.cloudinary.com/douqbebwk/image/upload/v1600103881/YelpCamp/lz8jjv2gyynjil7lswf4.png"
+                          crossorigin
+                        />
+                        <% } %>
+                      </div>
+                    </a>
+                  </div>
+                  <h5 class="post-title mb-0 mt-4">
+                    <a href="/posts/<%=post.slug%>"> <%=post.title%> </a>
+                  </h5>
+                  <ul class="meta list-inline mt-2 mb-0">
+                    <li class="list-inline-item">
+                      <a href="#">Admin</a>
+                    </li>
+                    <li class="list-inline-item">
+                      <%= moment(post.creationDate).format('Do MMMM, YYYY'); %>
+                    </li>
+                  </ul>
+                </div>
+                <% }%>
+              </div>
+              <!-- carousel arrows -->
+              <div class="slick-arrows-bot">
+                <button
+                  type="button"
+                  data-role="none"
+                  class="carousel-botNav-prev slick-custom-buttons"
+                  aria-label="Previous"
+                >
+                  <i class="icon-arrow-left"></i>
+                </button>
+                <button
+                  type="button"
+                  data-role="none"
+                  class="carousel-botNav-next slick-custom-buttons"
+                  aria-label="Next"
+                >
+                  <i class="icon-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- widget advertisement -->
+          <div class="widget no-container rounded text-md-center">
+            <span class="ads-title">- Sponsored Ad -</span>
+                                <a href="#" class="widget-ads">
+                                    <img src="//images/ads/ad-360.png" alt="Advertisement" />
+                                </a>
+                            </div>
+
+                            <!-- widget tags -->
+                            <div class="widget rounded">
+                                <div class="widget-header text-center">
+                                    <h3 class="widget-title">Tag Clouds</h3>
+                                    <img src="images/wave.svg" class="wave" alt="wave" />
+                                </div>
+                                <div class="widget-content">
+                                    <a href="/accomodations" class="tag">#StudentAccomodation</a>
+                                    <a href="/jobs" class="tag">#Jobs</a>
+                                    <a href="instititions" class="tag">#SAInstitutions</a>
+                                    <a href="/posts" class="tag">#StudentHacks</a>
+                                    <a href="/courses" class="tag">#SACourses</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- instagram feed -->
+    <div class="instagram">
+        <div class="container-xl">
+            <!-- button -->
+            <a href="#" class="btn btn-default btn-instagram">@studentfontein on Instagram</a
+    >
+    <!-- images -->
+    <div class="instagram-feed d-flex flex-wrap">
+      <div class="insta-item col-sm-2 col-6 col-md-2">
+        <a href="#">
+          <img src="images/insta/insta-1.jpg" alt="insta-title" />
+        </a>
+        </div>
+        <div class="insta-item col-sm-2 col-6 col-md-2">
+            <a href="#">
+                <img src="images/insta/insta-2.jpg" alt="insta-title" />
+            </a>
+        </div>
+        <div class="insta-item col-sm-2 col-6 col-md-2">
+            <a href="#">
+                <img src="images/insta/insta-3.jpg" alt="insta-title" />
+            </a>
+        </div>
+        <div class="insta-item col-sm-2 col-6 col-md-2">
+            <a href="#">
+                <img src="images/insta/insta-4.jpg" alt="insta-title" />
+            </a>
+        </div>
+        <div class="insta-item col-sm-2 col-6 col-md-2">
+            <a href="#">
+                <img src="images/insta/insta-5.jpg" alt="insta-title" />
+            </a>
+        </div>
+        <div class="insta-item col-sm-2 col-6 col-md-2">
+            <a href="#">
+                <img src="images/insta/insta-6.jpg" alt="insta-title" />
+            </a>
+        </div>
+    </div>
+    </div>
+    </div>
