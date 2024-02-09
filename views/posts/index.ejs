@@ -1,8 +1,8 @@
 <% layout('layouts/boilerplate')%>
     <header class="jumbotron">
         <div class="container">
-            <h1><span class="glyphicon glyphicon-tent"></span> Welcome To ThoughtsHub!</h1>
-            <p>View life-changing insights</p>
+            <h1><span class="glyphicon glyphicon-tent"></span> Welcome To Escapehub!</h1>
+            <p>View Travel-changing insights</p>
             <p>
                 <a class="btn btn-primary btn-lg" href="/posts/new">Add Post </a>
             </p>
@@ -10,7 +10,7 @@
                 <form action="/posts" method="GET" class="form-inline" id="campground-search">
                     <div class="form-group">
                         <input type="text" name="search" placeholder="Post search..." class="form-control w-75">
-                        <input type="submit" value=" Submit">
+                        <input type="submit" value=" Submit" class="btn btn-primary mt-2">
                     </div>
                 </form>
             </p>
@@ -40,9 +40,8 @@
                                 <%= post.snippet %>
                             </p>
                             <a href="#"><time class="timeago" datetime="2019-10-26 20:00"> <%= moment(post.creationDate).format('Do MMMM, YYYY'); %> <br/> In <%=post.category%> </p></time></a>
-                            
-                            <a class="btn btn-primary" href="/posts/<%=post.slug%>">View <%=post.title%></a
-          >
+
+                            <a class="btn btn-primary" href="/posts/<%=post.slug%>">Read</a>
         </div>
       </div>
     </div>
