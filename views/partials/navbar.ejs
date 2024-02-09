@@ -16,9 +16,13 @@
       <div class="navbar-nav">
         <a class="nav-link" href="/">Home</a>
         <a class="nav-link" href="/posts">Posts</a>
+        <% if(currentUser) {%>
         <a class="nav-link" href="/posts/new">New Post</a>
+        <% } %>
         <a class="nav-link" href="/accomodations">accomodations</a>
+        <% if(currentUser) {%>
         <a class="nav-link" href="/accomodations/new">New Accomodation</a>
+        <% } %>
       </div>
       <div class="navbar-nav ml-auto">
         <% if(!currentUser) {%>
